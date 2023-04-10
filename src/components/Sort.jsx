@@ -15,6 +15,7 @@ function Sort({ characters, setCharacters, setSortValue, sortValue }) {
       <Select
         id="sortSelect"
         value={sortValue}
+        disabled={!characters.length}
         onChange={(e) => {
           if (e.target.value === "") {
             setSortValue("");

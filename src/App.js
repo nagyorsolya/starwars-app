@@ -1,4 +1,3 @@
-import "./App.css";
 import Header from "./components/Header";
 import { Button } from "@mui/material";
 import useCharacters from "./hooks/use-characters";
@@ -45,7 +44,7 @@ function App() {
   );
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-r from-red-800 to-black/30">
+    <div className="w-full min-h-screen bg-gradient-to-r from-red-600 to-red-950 overscroll-none">
       <div
         className={
           "lg:max-w-[75rem] m-auto flex flex-col items-center gap-y-12"
@@ -56,7 +55,7 @@ function App() {
           buttonConfiguration={buttonConfiguration}
           setSearchValue={setSearchValue}
         />
-        <div className="self-center lg:self-start">{`Showing ${
+        <div className="self-center lg:self-start lg:text-2xl text-xl">{`Showing ${
           characters.length ?? 0
         } results of ${allResults ?? 0}`}</div>
         <Sort
