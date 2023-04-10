@@ -1,10 +1,15 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 
-function useCharacters(onSuccess) {
+function useCharacters(onSuccess, searchParams, pageNumber) {
   return useQuery({
-    queryKey: ["characters"],
-    queryFn: () => axios.get("https://swapi.dev/api/people/"),
+    queryKey: ["characters", searchParams, pageNumber],
+    queryFn: () =>
+      axios.get(
+        `https://swapi.dev/api/people/${
+          searchParams ? "?search=" + searchParams : ""
+        }`
+      ),
     onError: (err) => console.log(err),
     onSuccess,
   });
