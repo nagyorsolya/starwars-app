@@ -1,23 +1,18 @@
 import "./App.css";
 import Header from "./components/Header";
-import {
-  Button,
-  FormControl,
-  InputLabel,
-  MenuItem,
-  Select,
-} from "@mui/material";
+import { Button } from "@mui/material";
 import useCharacters from "./hooks/use-characters";
 import useCharacterStore from "./store/use-character-store";
 import Characters from "./components/Characters";
 import { useState } from "react";
 import orderBy from "./utils/order-by";
-import { useQueryClient } from "@tanstack/react-query";
 import Search from "./components/Search";
+import Sort from "./components/Sort";
 
 const buttonConfiguration = {
   color: "black",
   borderColor: "black",
+  marginBottom: "1rem",
   ":hover": {
     color: "white",
     backgroundColor: "black",
@@ -32,7 +27,7 @@ function App() {
   const { characters, setCharacters } = useCharacterStore();
   let [pageNumber, setPageNumber] = useState(1);
   const [allResults, setAllResults] = useState(0);
-  const queryClient = useQueryClient();
+
   const { isLoading } = useCharacters(
     (data) => {
       const nextIndex = pageNumber * PAGE_SIZE;
@@ -50,54 +45,38 @@ function App() {
   );
 
   return (
-    <div className="max-w-[75rem] m-auto flex flex-col items-center gap-y-12">
-      <Header header="Star wars character search" />
-      <Search
-        buttonConfiguration={buttonConfiguration}
-        setSearchValue={setSearchValue}
-      />
-      <div className="self-start">{`Showing ${
-        characters.length ?? 0
-      } results of ${allResults ?? 0}`}</div>
-      <FormControl
-        variant="standard"
-        sx={{ m: 1, minWidth: 120, alignSelf: "start" }}
+    <div className="w-full min-h-screen bg-gradient-to-r from-red-800 to-black/30">
+      <div
+        className={
+          "lg:max-w-[75rem] m-auto flex flex-col items-center gap-y-12"
+        }
       >
-        <InputLabel id="sortInput">Sort by</InputLabel>
-        <Select
-          id="sortSelect"
-          value={sortValue}
-          onChange={(e) => {
-            if (e.target.value === "") {
-              setSortValue("");
-              queryClient.invalidateQueries("characters");
-            } else {
-              setSortValue(e.target.value);
-              setCharacters(orderBy(e.target.value, characters));
-            }
+        <Header header="Star wars character search" />
+        <Search
+          buttonConfiguration={buttonConfiguration}
+          setSearchValue={setSearchValue}
+        />
+        <div className="self-center lg:self-start">{`Showing ${
+          characters.length ?? 0
+        } results of ${allResults ?? 0}`}</div>
+        <Sort
+          characters={characters}
+          setCharacters={setCharacters}
+          setSortValue={setSortValue}
+          sortValue={sortValue}
+        />
+        <Characters characters={characters} />
+        <Button
+          variant="outlined"
+          sx={buttonConfiguration}
+          disabled={characters.length === allResults || isLoading}
+          onClick={() => {
+            setPageNumber(pageNumber + 1);
           }}
-          label="sort"
         >
-          <MenuItem value="">
-            <em>None</em>
-          </MenuItem>
-          <MenuItem value={"asc"}>A-Z</MenuItem>
-          <MenuItem value={"desc"}>Z-A</MenuItem>
-          <MenuItem value={"female"}>Female</MenuItem>
-          <MenuItem value={"male"}>Male</MenuItem>
-        </Select>
-      </FormControl>
-      <Characters characters={characters} />
-      <Button
-        variant="outlined"
-        sx={{ ...buttonConfiguration }}
-        disabled={characters.length === allResults || isLoading}
-        onClick={() => {
-          setPageNumber(pageNumber + 1);
-        }}
-      >
-        Load more
-      </Button>
+          Load more
+        </Button>
+      </div>
     </div>
   );
 }
