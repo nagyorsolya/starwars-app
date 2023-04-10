@@ -10,8 +10,8 @@ function Characters({ characters }) {
           <Avatar
             key={character.name}
             sx={{
-              width: "150px",
-              height: "150px",
+              width: "9.375rem",
+              height: "9.375rem",
               textAlign: "center",
               marginBottom: "1rem",
             }}
