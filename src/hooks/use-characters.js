@@ -10,7 +10,7 @@ function useCharacters(onSuccess, searchParams, pageNumber) {
           searchParams ? "?search=" + searchParams : ""
         }`
       ),
-    onError: (err) => console.log(err),
+    onError: (err) => alert(err),
     onSuccess,
   });
 }
