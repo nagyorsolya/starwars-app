@@ -7,10 +7,14 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { red, common } from "@mui/material/colors";
 import { QueryClient } from "@tanstack/react-query";
 import { QueryClientProvider } from "@tanstack/react-query";
+import "./fonts/DistantGalaxy.ttf";
 
 const queryClient = new QueryClient();
 
 const theme = createTheme({
+  typography: {
+    fontFamily: "DistantGalaxy",
+  },
   palette: {
     primary: {
       main: common["black"],

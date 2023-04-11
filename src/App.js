@@ -44,26 +44,28 @@ function App() {
   );
 
   return (
-    <div className="w-full min-h-screen bg-gradient-to-r from-red-600 to-red-950 overscroll-none">
+    <div className="w-full min-h-screen bg-gray-400">
       <div
         className={
-          "lg:max-w-[75rem] m-auto flex flex-col items-center gap-y-12"
+          "lg:max-w-[62.5rem] m-auto flex flex-col items-center gap-y-12"
         }
       >
         <Header header="Star wars character search" />
-        <Search
-          buttonConfiguration={buttonConfiguration}
-          setSearchValue={setSearchValue}
-        />
-        <div className="self-center lg:self-start lg:text-2xl text-xl">{`Showing ${
-          characters.length ?? 0
-        } results of ${allResults ?? 0}`}</div>
-        <Sort
-          characters={characters}
-          setCharacters={setCharacters}
-          setSortValue={setSortValue}
-          sortValue={sortValue}
-        />
+        <div className="w-full flex lg:flex-row flex-col justify-center gap-x-10 gap-y-3 items-center text-center">
+          <div className="lg:self-end lg:text-xl text-lg">{`${
+            characters.length ?? 0
+          } of ${allResults ?? 0}`}</div>
+          <Search
+            buttonConfiguration={buttonConfiguration}
+            setSearchValue={setSearchValue}
+          />
+          <Sort
+            characters={characters}
+            setCharacters={setCharacters}
+            setSortValue={setSortValue}
+            sortValue={sortValue}
+          />
+        </div>
         <Characters characters={characters} />
         <Button
           variant="outlined"

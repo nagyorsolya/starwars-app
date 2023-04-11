@@ -2,7 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "DistantGalaxy";
+  src: url("fonts/DistantGalaxy.ttf");
+}
+
 html {
   margin: 0;
-  font-family: "Roboto";
+  font-family: "DistantGalaxy";
 }
