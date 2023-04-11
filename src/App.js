@@ -51,7 +51,7 @@ function App() {
         }
       >
         <Header header="Star wars character search" />
-        <div className="w-full flex lg:flex-row flex-col justify-center gap-x-10 gap-y-3 items-center text-center">
+        <div className="w-full flex lg:flex-row flex-col justify-center gap-x-10 gap-y-3 items-center text-center sticky top-0 bg-gray-400">
           <div className="lg:self-end lg:text-xl text-lg">{`${
             characters.length ?? 0
           } of ${allResults ?? 0}`}</div>

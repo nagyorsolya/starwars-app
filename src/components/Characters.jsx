@@ -4,7 +4,7 @@ import mockImage1 from "../assets/mock-image-1.png";
 
 function Characters({ characters }) {
   return (
-    <div className="flex gap-x-24 flex-wrap lg:justify-start justify-center">
+    <div className="flex gap-x-24 flex-wrap lg:justify-start justify-center lg:max-h-[39.375rem] overflow-y-auto">
       {characters.length
         ? characters.map((character, index) => (
             <div className="mb-2" key={character.name}>
@@ -12,7 +12,7 @@ function Characters({ characters }) {
                 className="flex flex-col items-center justify-between"
                 key={character.name}
                 sx={{
-                  boxShadow: 20,
+                  boxShadow: 4,
                   width: "10.625rem",
                   height: "16.875rem",
                   textAlign: "center",
